@@ -36,13 +36,14 @@ for ($i = 0; $i < $length; $i++) { // dok god je i manji od duzine stringa
 
     elseif($input[$i] === ')'){ // ako je string pod 0,1,2,3... ) nakatu --
         $nakatu--;
-    }
-    //first time in basement
-    if($nakatu === (-1)){
-        echo 'Santa entered basement for the first time after ' . $i . ' times!' . PHP_EOL;
-        break;
+        if($nakatu === -1){
+            $i++;
+            break;
+        }
     }
 }
+ //first time in basement
+ echo 'Santa entered basement for the first time after ' . $i . ' times!' . PHP_EOL;
 
 /*Now, given the same instructions, find the position of the first character 
 that causes him to enter the basement (floor -1).
