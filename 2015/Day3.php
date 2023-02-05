@@ -23,20 +23,33 @@ including twice to the house at his starting/ending location.
 
 
 $input = file_get_contents('Day3.txt'); // ucitaj mi sve iz datoteke kao string
-
 //grid mreza dvodimenzionalna (Pocetna tocka)
 $x = 0;
 $y = 0;
-
-
-
 $houses=[]; //houses mi je array 
 
 
-for($i=0 ; $i < strlen($input) ; $i++){   
 
-    if($input[$i] == '^'){ // kako je moguce da mi string vrti kao array odnosno da trazi po stringu
-                            //ko da je array [$i]
+for($i=0 ; $i < strlen($input) ; $i++)
+{ // PREBACI U SWITCH CASE RADI BRZEG I POPTIMALNIJEG RADA
+
+    switch($input[$i])
+    {
+        case '^':
+            $x++;
+            break;
+        case 'v':
+            $x--;
+            break;
+        case '>':
+            $y++;
+            break;
+        case '<':
+            $y--;
+            break;
+    }
+   /* NEVALJALI KOD PREVISE ELSEIFOVA KORSTIMO SWITCH
+    if($input[$i] == '^'){ 
         $x++;
     }elseif($input[$i] == 'v'){
 
@@ -47,7 +60,7 @@ for($i=0 ; $i < strlen($input) ; $i++){
     }elseif($input[$i] == '<'){
 
         $y--;
-    }
+    }*/
 
         //nakon sto si zavrsio sve ifove ubaci mi trenutni x i y u array s dvije varijable
         $location = array($x,$y); // location = [$x(0),$y(1)] x je 0 a y je 1
@@ -62,7 +75,8 @@ for($i=0 ; $i < strlen($input) ; $i++){
             }
         } // kraj for each
 
-        if($flag != true){
+        if(true != $flag){ // MOGUCE DA SE RADI SA TRUE != $FLAG ZBOG PUCANJA KODA NPR TRUE = $FLAG (PRIMJER POGRESKE)
+                            // prije ce javit puknuce koda u slucaju pogreske
             $houses[] = $location; //ako kuca nije posjecena spremi tu lokaciju kao novu kucu u array
         }
     
